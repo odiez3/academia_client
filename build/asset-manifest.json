@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/static/css/main.1b7286f0.chunk.css",
+    "main.js": "/static/js/main.0931ef52.chunk.js",
+    "main.js.map": "/static/js/main.0931ef52.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.657d4c01.js",
+    "runtime-main.js.map": "/static/js/runtime-main.657d4c01.js.map",
+    "static/css/2.703d28bc.chunk.css": "/static/css/2.703d28bc.chunk.css",
+    "static/js/2.90d946b9.chunk.js": "/static/js/2.90d946b9.chunk.js",
+    "static/js/2.90d946b9.chunk.js.map": "/static/js/2.90d946b9.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.c5bd77545c09f99778c1f0214347ce63.js": "/precache-manifest.c5bd77545c09f99778c1f0214347ce63.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/2.703d28bc.chunk.css.map": "/static/css/2.703d28bc.chunk.css.map",
+    "static/css/main.1b7286f0.chunk.css.map": "/static/css/main.1b7286f0.chunk.css.map",
+    "static/media/logoAcademia.jpg": "/static/media/logoAcademia.422fcd2f.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.657d4c01.js",
+    "static/css/2.703d28bc.chunk.css",
+    "static/js/2.90d946b9.chunk.js",
+    "static/css/main.1b7286f0.chunk.css",
+    "static/js/main.0931ef52.chunk.js"
+  ]
+}
