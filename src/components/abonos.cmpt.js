@@ -194,6 +194,7 @@ class ComponentToPrint extends Component {
     }
 
     render() {
+        console.log(this.props.data)
         return (
             <div className="container contentTicket">
                 <div className="row ticket">
@@ -202,6 +203,11 @@ class ComponentToPrint extends Component {
                         <p>Dirección: Calle Heroes de Tlapacoyan 315</p>
                         <p>Tel: 225 101 8148</p>
                         <p>Fecha:{this.plantillaFecha(new Date())}</p>
+                        {
+                            this.props.data.ticketId ?
+                            <p>Folio Ticket: {this.props.data.ticketId}</p>
+                            : null
+                        }
                         <p>=================================</p>
                     </div>
                 </div>
@@ -699,11 +705,17 @@ class Abonos extends Component {
                 "assisted": false,
                 "paidOut": true,
                 "date": dateAssistance,
-                "isAbono": true
+                "isAbono": true,
+                ticketId: this.state.ticketId || false 
             }
             try {
+              
                 let response = await axios.post(`${URL_API}/addAssistance`, data);
                 if (response) {
+                    if(response.data && response.data.paymentStored){
+                         this.setState({ticketId:response.data.paymentStored.ticketId});
+                    }
+                   
                     this.getTotalDebt();
                     M.toast({ html: "Se pago la clase correctamente", classes: "green" });
                 }

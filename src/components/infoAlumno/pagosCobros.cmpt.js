@@ -42,7 +42,7 @@ class PagosCobros extends Component {
             console.log(JSON.stringify(data));
 
             axios.post(`${URL_API}/getPaymentsChargesByStudent`, data).then((res) => {
-                debugger;
+           
                 console.log(res.data.length);
                 console.log(res.data)
                 this.setState({ pagosCobros: res.data });
@@ -87,7 +87,7 @@ class PagosCobros extends Component {
                                 <tbody>
                                     {
                                         pagosCobros.map((value, index) => {
-                                            debugger;
+                                          
                                             console.log(value.concept);
                                             let f = new Date(value.date);
                                             let format = dias[f.getDay()] + " " + f.getDate() + " de " + meses[f.getMonth()] + " del " + f.getFullYear() + " ";//+ f.getHours() + ":" + f.getMinutes();

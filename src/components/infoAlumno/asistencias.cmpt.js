@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { URL_API } from '../../properties';
 import axios from 'axios';
+import moment from 'moment';
 import M from 'materialize-css';
 import Calendar from 'react-calendar';
 class Asistencias extends Component {
@@ -22,12 +23,12 @@ class Asistencias extends Component {
 
 
     getAsistencias = () => {
-
+  
         let { from, to } = this.state;
         let { student } = this.props;
 
         if (from.trim() !== "" && to.trim() !== "") {
-
+          
             let data = {
                 "id": student._id,
                 "from": from,
@@ -37,7 +38,6 @@ class Asistencias extends Component {
             console.log(JSON.stringify(data));
 
             axios.post(`${URL_API}/getAssitancesByID`, data).then((res) => {
-                debugger;
                 console.log(res.data.length);
                 console.log(res.data)
                 this.setState({ asistencias: res.data });
@@ -86,8 +86,8 @@ class Asistencias extends Component {
                         asistencias.length ?
 
                             <Calendar
-                            activeStartDate={new Date(from)}
-                            defaultActiveStartDate={new Date(from)}
+                            activeStartDate={moment(moment(from).startOf('day')).toDate()}
+                            defaultActiveStartDate={moment(moment(from).startOf('day')).toDate()}
                                 tileClassName={({ activeStartDate, date, view }) => {
                                     if (view === "month") {
                                         for (var d of this.state.asistencias) {

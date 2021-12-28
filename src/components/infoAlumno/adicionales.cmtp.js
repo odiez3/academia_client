@@ -14,7 +14,7 @@ class Adicionales extends Component {
     }
 
     componentDidMount() {
-        debugger;
+        
         if (this.props.student) {
             this.setState({ id: this.props.student._id }, () => {
                 this.getExtras();
@@ -38,9 +38,9 @@ class Adicionales extends Component {
 
     getExtras() {
         let { id } = this.state;
-        debugger;
+        
         if (id) {
-            debugger;
+           
             axios.post(`${URL_API}/getExtras`, { id }).then((response) => {
                 if (response.data) {
                     this.setState({ extras: response.data });
@@ -54,7 +54,7 @@ class Adicionales extends Component {
             M.toast({ html: `Concepto cancelado correctamente. <i class="material-icons">check</i>`, classes: "green" });
             this.getExtras();
         }).catch((error) => {
-            debugger;
+        
             console.log(error);
             if (error.response) {
                 let { message } = error.response.data;

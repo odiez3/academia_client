@@ -48,10 +48,7 @@ class AdicionalForm extends Component {
             errors.concepto = "Ingrese el concepto de pago.";
         }
 
-        debugger;
         if(!isNaN(monto)){
-
-     
 
         if (monto.trim() === "") {
             valido = false;

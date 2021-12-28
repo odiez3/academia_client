@@ -106,6 +106,7 @@ class BuscaAlumno extends Component {
         //     "methodPayment": student.methodPayment,
         //     "priceWeekend": PRICE_WEEKEND
         // }
+        debugger;
         let date = new Date();
         console.log(date.getDay());
 
@@ -138,9 +139,6 @@ class BuscaAlumno extends Component {
                 M.toast({ html: "Ocurrio un error inesperado.", classes: "red" });
             }
         });
-
-
-
 
     }
 

@@ -37,7 +37,7 @@ class UsersApp extends Component {
 
     getUsers = () => {
         axios.get(`${URL_API}/getUsersApp`).then((rs) => {
-            debugger;
+          
             this.setState({ users: rs.data }, () => {
                 M.FormSelect.init(document.querySelectorAll('select'), {});
             });
@@ -247,7 +247,7 @@ class UsersApp extends Component {
                 password: password.trim(),
                 rol: role
             }
-            debugger;
+        
             if (id) {
                 url = `${URL_API}/update-user/${id}`;
             }

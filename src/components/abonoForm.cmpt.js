@@ -117,6 +117,11 @@ class ComponentToPrint extends Component {
                         <p>Dirección: Calle Heroes de Tlapacoyan 315</p>
                         <p>Tel: 225 101 8148</p>
                         <p>Fecha:{this.plantillaFecha(new Date())}</p>
+                        {
+                            this.props.data.ticketId ?
+                            <p>Folio Ticket: {this.props.data.ticketId}</p>
+                            : null
+                        }
                         <p>=================================</p>
                     </div>
                 </div>
@@ -228,7 +233,6 @@ class AbonoForm extends Component {
 
         axios.post(`${URL_API}/getExtras`, { id }).then((response) => {
             if (response.data.length) {
-                debugger;
                 this.setState({ extras: response.data }, () => {
                     if (this.state.abonoExtra) {
                         M.FormSelect.init(document.querySelectorAll('select'), {
@@ -254,7 +258,7 @@ class AbonoForm extends Component {
             valido = false;
             errors.montoAbono = "Debe ingresar un monto válido.";
         }
-        debugger;
+     
         if (abonoExtra && extraId.trim() === "") {
             valido = false;
             errors.extraId = "Elija un concepto a abonar";
@@ -272,11 +276,13 @@ class AbonoForm extends Component {
         }
 
         if (valido) {
+            
             let data = {
                 "id": id,
                 "monto": parseFloat(montoAbono),
                 "abonoExtra": abonoExtra,
-                "extraId": extraId
+                "extraId": extraId,
+                ticketId: this.state.ticketId || false 
             }
             if (abonoMensualidad) {
 
@@ -291,15 +297,23 @@ class AbonoForm extends Component {
                     textoExtra = value.concept;
                 }
             });
+       
             axios.post(`${URL_API}/addPayment`, data).then((response) => {
-
+            
                 if (response.data) {
                     let pagosRealizados = this.state.pagosRealizados;
                     pagosRealizados.push({
                         montoAbono, textoExtra
                     })
                     M.toast({ html: `${response.data.message}<i class="material-icons">check</i>`, classes: "green" })
-                    this.setState({ montoAbono: "", extraId: "", pagosRealizados, printTicket: true }, () => {
+                    let ticketId = false;
+
+                    if(response.data && response.data.paymetnStored && response.data.paymetnStored.ticketId)
+                    {
+                        ticketId = response.data.paymetnStored.ticketId;
+                    }
+
+                    this.setState({ montoAbono: "", extraId: "", pagosRealizados, printTicket: true,ticketId }, () => {
                         this.getExtras(id);
                         this.props.reloadExtras();
 
@@ -309,7 +323,7 @@ class AbonoForm extends Component {
             }).catch((error) => {
                 console.log(error);
                 if (error.response) {
-                    debugger;
+                   
                     M.toast({ html: "Ocurrio algo", classes: "red" });
                 } else {
                     M.toast({ html: "Ocurrio un error inesperado.", classes: "red" });
@@ -326,7 +340,7 @@ class AbonoForm extends Component {
         let { value } = event.target;
         let abonoExtra = false;
         let abonoMensualidad = false;
-        debugger;
+     
         switch ((value)) {
             case "1":
                 abonoExtra = false;

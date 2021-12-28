@@ -91,7 +91,7 @@ class ListAlumnos extends Component {
         }
         this.setState({ [id]: value }, () => {
             if (id === "limit") {
-                this.getStudents();
+                this.setState({page:1},this.getStudents);
             } else if (id === "consecutivo" && value.trim() === "") {
                 this.getStudents();
             }
