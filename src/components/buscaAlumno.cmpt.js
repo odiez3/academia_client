@@ -106,7 +106,6 @@ class BuscaAlumno extends Component {
         //     "methodPayment": student.methodPayment,
         //     "priceWeekend": PRICE_WEEKEND
         // }
-        debugger;
         let date = new Date();
         console.log(date.getDay());
 
@@ -119,7 +118,6 @@ class BuscaAlumno extends Component {
         }
 
         console.log(JSON.stringify(data));
-        debugger;
         if (student.methodPayment === 1 && WEKS_DAYS.indexOf(date.getDay()) === -1) {
             data.paidOut = true;
             data.priceLesson = 0;
@@ -130,7 +128,6 @@ class BuscaAlumno extends Component {
             console.log(response);
             M.toast({ html: `Asistencia aplicada correctamente. <i class="material-icons">check</i>`, classes: "green" })
         }).catch((error) => {
-            debugger;
             console.log(error);
             if (error.response) {
                 let { message } = error.response.data;
