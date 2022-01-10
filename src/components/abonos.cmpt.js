@@ -732,16 +732,16 @@ class Abonos extends Component {
     }
 
     payLesson = (lesson) => {
-        let { lesonPayed } = this.state;
-        axios.post(`${URL_API}/payLesson`, { id: lesson._id }).then((result) => {
-
+        let { lesonPayed, ticketId } = this.state;
+        axios.post(`${URL_API}/payLesson`, { id: lesson._id, ticketId }).then((result) => {
+            debugger;
             M.toast({ html: result.data.message, classes: "green" });
             this.getAsistenciasPorPagar();
             this.getTotalDebt();
             this.getExtras();
             lesonPayed.push(lesson);
 
-            this.setState({ lesonPayed, printTicket: lesonPayed.length ? true : false });
+            this.setState({ lesonPayed, printTicket: lesonPayed.length ? true : false, ticketId: result.data.ticketId });
 
         }).catch((error) => {
             if (error.response) {
